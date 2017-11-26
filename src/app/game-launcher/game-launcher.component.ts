@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {GameService} from "../game.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'ta-game-launcher',
@@ -6,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameLauncherComponent implements OnInit {
 
-  constructor() { }
+  private game: Observable<any>;
+
+  constructor(private gameService: GameService) { }
 
   ngOnInit() {
+    this.game = this.gameService.currentGame.valueChanges();
+  }
+
+  openGame(){
+    this.gameService.openCurrentGame();
+  }
+
+  closeGame(){
+    this.gameService.closeCurrentGame();
   }
 
 }

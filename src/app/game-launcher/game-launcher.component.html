@@ -1,5 +1,5 @@
 <div id="launcher-container">
-  <button class="start">Start</button>
-  <button class="reset">Stop</button>
-  <span class="game-titile">game-tsukamotota-01</span>
+  <button class="start" (click)="openGame()">Start</button>
+  <button class="reset" (click)="closeGame()">Stop</button>
+  <span class="game-titile">{{(game|async)?.name}}</span>
 </div>

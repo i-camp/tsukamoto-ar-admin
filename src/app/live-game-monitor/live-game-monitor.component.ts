@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {GameService} from "../game.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'ta-live-game-monitor',
@@ -6,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LiveGameMonitorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private gameService: GameService) {
+  }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.gameService.replaceCurrentGame(params['id']);
+    });
   }
 
 }

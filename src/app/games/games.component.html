@@ -1,7 +1,7 @@
 <div id="games-wrapper">
   <ul class="game-list nav nav-pills nav-justified">
-    <li *ngFor="let game of games; index as i" class="game nav-item">
-      <a routerLink="/games/{{i}}">tsukamotota</a>
+    <li *ngFor="let game of gameSettings | async;" class="game nav-item">
+      <a [routerLink]="['games', game.key]">{{game.name}}</a>
     </li>
   </ul>
 </div>
