@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+/* mixin and variable */
+@import 'variables';
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+/* each component's style */
+@import "./app/app.component";
+@import "./app/game-launcher/game-launcher.component";
+@import "./app/game-selector/game-selector.component";
+@import "./app/game-editor/game-editor.component";
+@import "./app/live-game-monitor/live-game-monitor.component";
+@import "./app/live-targets/live-targets.component";
+@import "./app/editable-targets/editable-targets.component";
+@import "./app/games/games.component";
+
+/* global style */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,19 @@
+#games-wrapper {
+  margin: 0;
+  padding: 0;
+  @include size(100%);
+  @include card-variant(#777, #000);
+
+  .game-list {
+    display: flex;
+    flex-flow: column;
+  }
+
+  .game {
+    margin: 10px 0;
+  }
+
+  .game a{
+    color: #EEE;
+  }
+}
