@@ -1,0 +1,22 @@
+#launcher-container {
+  margin: 0;
+  padding: 0;
+  @include size(100%);
+  @include card-variant(#555, #777);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .start,
+  .reset {
+    @include size(40px);
+    @include button-variant(#222, #BBB, #000);
+    @include border-radius(50%);
+    margin: 10px;
+  }
+
+  .game-titile {
+    color: #BBB;
+    margin-left: 100px;
+  }
+}

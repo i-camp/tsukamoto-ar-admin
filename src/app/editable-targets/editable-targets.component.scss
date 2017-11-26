@@ -1,0 +1,29 @@
+#editable-targets-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
+  padding: 20px;
+  @include size(100%);
+  @include card-variant(#BBB, #777);
+
+  .target {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px;
+    margin: 10px;
+    width: 200px;
+    @include card-variant(lighten(#BBB, 20%), #777);
+    @include border-radius;
+  }
+
+  .target-pic {
+    margin: 5px;
+    @include size(80px);
+  }
+
+  .target-summary-info {
+    flex-grow: 1;
+  }
+}
