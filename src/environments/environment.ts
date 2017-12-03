@@ -6,10 +6,11 @@
 export const environment = {
   production: false,
   firebase:  {
-    apiKey: "AIzaSyDNYQeL3jpu_JBsbjqj4wjuHu7YaMPJIho",
-    authDomain: "t-shooter.firebaseapp.com",
-    databaseURL: "https://t-shooter.firebaseio.com",
-    projectId: "t-shooter",
-    storageBucket: "t-shooter.appspot.com",
+    apiKey: "AIzaSyApU8XjBHp5GjMgb1HLOYi4UFmKyhNQP-I",
+    authDomain: "e-party2017.firebaseapp.com",
+    databaseURL: "https://e-party2017.firebaseio.com",
+    projectId: "e-party2017",
+    storageBucket: "e-party2017.appspot.com",
+    messagingSenderId: "342404901114"
   }
 };
