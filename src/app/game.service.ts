@@ -1,17 +1,16 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase, AngularFireObject, AngularFireList} from 'angularfire2/database';
-import 'rxjs/add/operator/mergeMap';
+import {AngularFireDatabase, AngularFireObject, AngularFireList, SnapshotAction} from 'angularfire2/database';
+import 'rxjs/add/operator/take';
+
 @Injectable()
 export class GameService {
 
   private _currentGame: AngularFireObject<any>;
   private _gameSettings: AngularFireList<any>;
-  private gameHistories: AngularFireList<any>;
 
   constructor(private db: AngularFireDatabase) {
     this._currentGame = db.object(`currentGame`);
     this._gameSettings = db.list(`gameSettings`);
-    this.gameHistories = db.list(`gameHistories`);
   }
 
   openCurrentGame(): void {
@@ -24,31 +23,50 @@ export class GameService {
   }
 
   replaceCurrentGame(id: string) {
-      this.db.list('gameSettings', ref => ref.orderByKey().equalTo(id))
-        .snapshotChanges()
-        .map(actions => this.db.object(`/gameSettings/${actions[0].key}`))
-        .mergeMap(gameRef => gameRef.snapshotChanges())
-        .map(action => ({key: action.payload.key, ...action.payload.val()}))
-        .map(GameService.createLiveGameFromSetting)// TODO 現状履歴の表示には未対応
-        .subscribe(gameVal => this._currentGame.set(gameVal));
+    this.db.object(`gameHistories`)
+      .snapshotChanges()
+      .map(action => action.payload)
+      .take(1)
+      .subscribe(historiesSnapShot => {
+        this.createGameFromSettingIfnotExistHistory.bind(this)(historiesSnapShot, id);
+      });
+  }
+
+  private createGameFromSettingIfnotExistHistory(historiesSnapShot, id) {
+    // create game form history
+    const historySnapShot = historiesSnapShot.child(id);
+    if (historySnapShot.exists()) {
+      this._currentGame.set({id: historySnapShot.key, ...historySnapShot.val()});
+      return;
+    }
+
+    // create game form setting
+    this.db.object(`gameSettings/${id}`)
+      .snapshotChanges()
+      .map(GameService.createGameFromSetting)
+      .take(1)
+      .subscribe(gameVal => this._currentGame.set(gameVal));
   }
 
   private createHistoryFromCurrentGame() {
-    this._currentGame.snapshotChanges().subscribe(action => {
-      const game = action.payload.val();
-      const historyRef = this.db.object(`gameHistories/${game.id}`);
-      delete game.id;
-      historyRef.set(game);
-    })
+    this._currentGame.snapshotChanges()
+      .take(1)
+      .subscribe(action => {
+        const game = action.payload.val();
+        const history = this.db.object(`gameHistories/${game.id}`);
+        delete game.id;
+        history.set(game);
+      })
   };
 
-  private static createLiveGameFromSetting(gameSetting: any) {
+  private static createGameFromSetting(setting: SnapshotAction) {
+    const _setting = ({key: setting.payload.key, ...setting.payload.val()});
     const game = {
-      id: gameSetting.key,
-      name: gameSetting.name,
+      id: _setting.key,
+      name: _setting.name,
       targets: []
     };
-    game.targets = gameSetting.targets.map(target => ({
+    game.targets = _setting.targets.map(target => ({
       name: target.name,
       liveHp: target.initHp,
       picUrl: target.picUrl
@@ -70,11 +88,16 @@ export class GameService {
               , {name: 'tsuamotota02', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
               , {name: 'tsuamotota03', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
               , {name: 'tsuamotota04', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota05', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'} , {name: 'tsuamotota06', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota05', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}, {
+                name: 'tsuamotota06',
+                initHp: 0,
+                picUrl: 'http://placehold.jp/80x80.png'
+              }
               , {name: 'tsuamotota07', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
               , {name: 'tsuamotota08', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
             ]
-          }, game002: {
+          },
+          game002: {
             name: '-審判の日- 個人用核シェルター争奪戦 前哨戦',
             during: '60000',
             maxHp: 5000,
@@ -98,7 +121,7 @@ export class GameService {
             ]
           }
         },
-        gameHistories: { },
+        gameHistories: {},
         currentGame: {},
         commits: {}
       }
