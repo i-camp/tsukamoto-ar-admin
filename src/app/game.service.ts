@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase, AngularFireObject, AngularFireList} from 'angularfire2/database';
 import 'rxjs/add/operator/mergeMap';
+
 @Injectable()
 export class GameService {
 
@@ -24,13 +25,13 @@ export class GameService {
   }
 
   replaceCurrentGame(id: string) {
-      this.db.list('gameSettings', ref => ref.orderByKey().equalTo(id))
-        .snapshotChanges()
-        .map(actions => this.db.object(`/gameSettings/${actions[0].key}`))
-        .mergeMap(gameRef => gameRef.snapshotChanges())
-        .map(action => ({key: action.payload.key, ...action.payload.val()}))
-        .map(GameService.createLiveGameFromSetting)// TODO 現状履歴の表示には未対応
-        .subscribe(gameVal => this._currentGame.set(gameVal));
+    this.db.list('gameSettings', ref => ref.orderByKey().equalTo(id))
+      .snapshotChanges()
+      .map(actions => this.db.object(`/gameSettings/${actions[0].key}`))
+      .mergeMap(gameRef => gameRef.snapshotChanges())
+      .map(action => ({key: action.payload.key, ...action.payload.val()}))
+      .map(GameService.createLiveGameFromSetting)// TODO 現状履歴の表示には未対応
+      .subscribe(gameVal => this._currentGame.set(gameVal));
   }
 
   private createHistoryFromCurrentGame() {
@@ -70,11 +71,16 @@ export class GameService {
               , {name: 'tsuamotota02', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
               , {name: 'tsuamotota03', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
               , {name: 'tsuamotota04', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota05', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'} , {name: 'tsuamotota06', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota05', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}, {
+                name: 'tsuamotota06',
+                initHp: 0,
+                picUrl: 'http://placehold.jp/80x80.png'
+              }
               , {name: 'tsuamotota07', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
               , {name: 'tsuamotota08', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
             ]
-          }, game002: {
+          },
+          game002: {
             name: '-審判の日- 個人用核シェルター争奪戦 前哨戦',
             during: '60000',
             maxHp: 5000,
@@ -98,7 +104,7 @@ export class GameService {
             ]
           }
         },
-        gameHistories: { },
+        gameHistories: {},
         currentGame: {},
         commits: {}
       }
