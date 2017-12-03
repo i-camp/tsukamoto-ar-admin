@@ -25,9 +25,27 @@ export class GameService {
   }
 
   replaceCurrentGame(id: string) {
+    this.db.object(`gameHistories`)
+      .snapshotChanges()
+      .map(action => action.payload)
+      .take(1)
+      .subscribe(historiesSnapShot => {
+        this.createGameFromSettingIfnotExistHistory.bind(this)(historiesSnapShot, id);
+      });
+  }
+
+  private createGameFromSettingIfnotExistHistory(historiesSnapShot, id) {
+    // create game form history
+    const historySnapShot = historiesSnapShot.child(id);
+    if (historySnapShot.exists()) {
+      this._currentGame.set({id: historySnapShot.key, ...historySnapShot.val()});
+      return;
+    }
+
+    // create game form setting
     this.db.object(`gameSettings/${id}`)
       .snapshotChanges()
-      .map(GameService.createGameFromSetting)// TODO 現状、過去履歴の表示には未対応
+      .map(GameService.createGameFromSetting)
       .take(1)
       .subscribe(gameVal => this._currentGame.set(gameVal));
   }
