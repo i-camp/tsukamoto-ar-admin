@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase, AngularFireObject, AngularFireList, SnapshotAction} from 'angularfire2/database';
+import 'rxjs/add/operator/take';
 
 @Injectable()
 export class GameService {
@@ -27,16 +28,19 @@ export class GameService {
     this.db.object(`gameSettings/${id}`)
       .snapshotChanges()
       .map(GameService.createGameFromSetting)// TODO 現状、過去履歴の表示には未対応
+      .take(1)
       .subscribe(gameVal => this._currentGame.set(gameVal));
   }
 
   private createHistoryFromCurrentGame() {
-    this._currentGame.snapshotChanges().subscribe(action => {
-      const game = action.payload.val();
-      const historyRef = this.db.object(`gameHistories/${game.id}`);
-      delete game.id;
-      historyRef.set(game);
-    })
+    this._currentGame.snapshotChanges()
+      .take(1)
+      .subscribe(action => {
+        const game = action.payload.val();
+        const history = this.db.object(`gameHistories/${game.id}`);
+        delete game.id;
+        history.set(game);
+      })
   };
 
   private static createGameFromSetting(setting: SnapshotAction) {
