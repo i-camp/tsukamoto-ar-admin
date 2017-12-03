@@ -1,12 +1,12 @@
 <div id="live-targets-wrapper">
-  <div *ngFor="let target of targets; let i = index" class="target">
+  <div *ngFor="let target of targets | async; let i = index" class="target">
     <div class="target-rating" [class.primary]="i == 0">{{ i + 1 }}</div>
     <div class="target-portrait">
-      <img src="http://placehold.jp/80x80.png" alt="tsukamotota" class="target-pic">
+      <img src="{{target.picUrl}}" alt="{{target.name}}" class="target-pic">
     </div>
     <div class="target-summary-info">
-      <h5 class="target-name">tsukamotota</h5>
-      <progressbar class="target-hp" [value]="3440" [max]="4000">3440/4000</progressbar>
+      <h5 class="target-name">{{target.name}}</h5>
+      <progressbar class="target-hp" [value]="target.liveHp" [max]="target.maxHp">{{target.liveHp}}/{{target.maxHp}}</progressbar>
     </div>
   </div>
 </div>
