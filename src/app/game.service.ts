@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase, AngularFireObject, AngularFireList} from 'angularfire2/database';
-import 'rxjs/add/operator/mergeMap';
+import {AngularFireDatabase, AngularFireObject, AngularFireList, SnapshotAction} from 'angularfire2/database';
 
 @Injectable()
 export class GameService {
@@ -25,12 +24,9 @@ export class GameService {
   }
 
   replaceCurrentGame(id: string) {
-    this.db.list('gameSettings', ref => ref.orderByKey().equalTo(id))
+    this.db.object(`gameSettings/${id}`)
       .snapshotChanges()
-      .map(actions => this.db.object(`/gameSettings/${actions[0].key}`))
-      .mergeMap(gameRef => gameRef.snapshotChanges())
-      .map(action => ({key: action.payload.key, ...action.payload.val()}))
-      .map(GameService.createLiveGameFromSetting)// TODO 現状履歴の表示には未対応
+      .map(GameService.createGameFromSetting)// TODO 現状、過去履歴の表示には未対応
       .subscribe(gameVal => this._currentGame.set(gameVal));
   }
 
@@ -43,13 +39,14 @@ export class GameService {
     })
   };
 
-  private static createLiveGameFromSetting(gameSetting: any) {
+  private static createGameFromSetting(setting: SnapshotAction) {
+    const _setting = ({key: setting.payload.key, ...setting.payload.val()});
     const game = {
-      id: gameSetting.key,
-      name: gameSetting.name,
+      id: _setting.key,
+      name: _setting.name,
       targets: []
     };
-    game.targets = gameSetting.targets.map(target => ({
+    game.targets = _setting.targets.map(target => ({
       name: target.name,
       liveHp: target.initHp,
       picUrl: target.picUrl
