@@ -7,12 +7,10 @@ export class GameService {
 
   private _currentGame: AngularFireObject<any>;
   private _gameSettings: AngularFireList<any>;
-  private gameHistories: AngularFireList<any>;
 
   constructor(private db: AngularFireDatabase) {
     this._currentGame = db.object(`currentGame`);
     this._gameSettings = db.list(`gameSettings`);
-    this.gameHistories = db.list(`gameHistories`);
   }
 
   openCurrentGame(): void {
