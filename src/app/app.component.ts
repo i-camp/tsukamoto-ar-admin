@@ -7,5 +7,15 @@ import {GameService} from "./game.service";
   providers: [GameService]
 })
 export class AppComponent implements OnInit {
+
   title = 'app';
+
+  constructor(private gameService: GameService) {
+  }
+
+  ngOnInit() {
+    // NOTE 開発中のみ
+    this.gameService.initSchema();
+  }
+
 }

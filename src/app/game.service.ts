@@ -56,6 +56,55 @@ export class GameService {
     return game;
   }
 
+  // NOTE 開発用コード
+  // Schema作成
+  initSchema() {
+    const refRoot = this.db.object('/');
+    refRoot.set(
+      {
+        gameSettings: {
+          game001: {
+            name: '-審判の日- 個人用核シェルター争奪戦 予選',
+            during: '60000', maxHp: 5000, targets: [
+              {name: 'tsuamotota01', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota02', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota03', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota04', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota05', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'} , {name: 'tsuamotota06', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota07', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota08', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+            ]
+          }, game002: {
+            name: '-審判の日- 個人用核シェルター争奪戦 前哨戦',
+            during: '60000',
+            maxHp: 5000,
+            targets: [
+              {name: 'tsuamotota01', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota02', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota03', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota04', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota05', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+            ]
+          },
+          game003: {
+            name: '-審判の日- 個人用核シェルター争奪戦',
+            during: '60000',
+            maxHp: 5000,
+            targets: [
+              {name: 'tsuamotota01', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota02', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota03', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              , {name: 'tsuamotota04', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+            ]
+          }
+        },
+        gameHistories: { },
+        currentGame: {},
+        commits: {}
+      }
+    );
+  }
+
   get gameSettings(): AngularFireList<any> {
     return this._gameSettings;
   }
