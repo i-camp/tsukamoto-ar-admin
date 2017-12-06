@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GameService} from "../game.service";
 import {ActivatedRoute} from "@angular/router";
 
+// TODO WIP
 @Component({
   selector: 'ta-live-game-monitor',
   templateUrl: './live-game-monitor.component.html'
