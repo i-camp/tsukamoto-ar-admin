@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   @include size(100%);
-  @include card-variant(#555, #777);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -5,13 +5,11 @@
   justify-content: space-around;
   padding: 20px;
   @include size(100%);
-  @include card-variant(#BBB, #777);
 
   .target {
     padding: 5px;
     margin: 10px;
     width: 200px;
-    @include card-variant(lighten(#BBB, 20%), #777);
     @include border-radius;
   }
 
@@ -37,8 +35,16 @@
   }
 
   .target-name,
-  .target-hp {
+  .gauge {
     display: block;
+  }
+
+  .progress-bar {
+    background-color: #FFF;
+    color: #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    @include text-truncate;
   }
 
 }

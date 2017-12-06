@@ -13,6 +13,10 @@ export class GameService {
     this._gameSettings = db.list(`gameSettings`);
   }
 
+  static createGameFromSetting(setting: SnapshotAction) {
+    return ({id: setting.payload.key, ...setting.payload.val()});
+  }
+
   openCurrentGame(): void {
     this._currentGame.update({openedAt: new Date()});
   }
@@ -56,22 +60,7 @@ export class GameService {
         const history = this.db.object(`gameHistories/${game.id}`);
         delete game.id;
         history.set(game);
-      })
-  };
-
-  private static createGameFromSetting(setting: SnapshotAction) {
-    const _setting = ({key: setting.payload.key, ...setting.payload.val()});
-    const game = {
-      id: _setting.key,
-      name: _setting.name,
-      targets: []
-    };
-    game.targets = _setting.targets.map(target => ({
-      name: target.name,
-      liveHp: target.initHp,
-      picUrl: target.picUrl
-    }));
-    return game;
+      });
   }
 
   // NOTE 開発用コード
@@ -83,41 +72,34 @@ export class GameService {
         gameSettings: {
           game001: {
             name: '-審判の日- 個人用核シェルター争奪戦 予選',
-            during: '60000', maxHp: 5000, targets: [
-              {name: 'tsuamotota01', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota02', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota03', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota04', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota05', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}, {
-                name: 'tsuamotota06',
-                initHp: 0,
-                picUrl: 'http://placehold.jp/80x80.png'
-              }
-              , {name: 'tsuamotota07', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota08', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+            during: '60000',
+            targets: [
+              {name: 'tsuamotota01', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              {name: 'tsuamotota02', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              {name: 'tsuamotota03', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
             ]
           },
           game002: {
             name: '-審判の日- 個人用核シェルター争奪戦 前哨戦',
             during: '60000',
-            maxHp: 5000,
             targets: [
-              {name: 'tsuamotota01', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota02', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota03', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota04', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota05', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              {name: 'tsuamotota01', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              {name: 'tsuamotota02', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              {name: 'tsuamotota03', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              {name: 'tsuamotota04', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              {name: 'tsuamotota05', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              {name: 'tsuamotota06', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              {name: 'tsuamotota07', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'}
             ]
           },
           game003: {
             name: '-審判の日- 個人用核シェルター争奪戦',
             during: '60000',
-            maxHp: 5000,
             targets: [
-              {name: 'tsuamotota01', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota02', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota03', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
-              , {name: 'tsuamotota04', initHp: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              {name: 'tsuamotota01', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              {name: 'tsuamotota02', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              {name: 'tsuamotota03', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              {name: 'tsuamotota04', plusPoint: 0, minusPoint: 0, picUrl: 'http://placehold.jp/80x80.png'},
             ]
           }
         },
