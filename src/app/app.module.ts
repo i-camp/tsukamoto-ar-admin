@@ -15,6 +15,7 @@ import { LiveTargetsComponent } from './live-targets/live-targets.component';
 import { GameEditorComponent } from './game-editor/game-editor.component';
 import { EditableTargetsComponent } from './editable-targets/editable-targets.component';
 import { GameSelectorComponent } from './game-selector/game-selector.component';
+import { GaugePipe } from './gauge.pipe';
 
 const appRoutes: Routes = [
   {path: 'new-game', component: EditableTargetsComponent},
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     LiveTargetsComponent,
     GameEditorComponent,
     EditableTargetsComponent,
-    GameSelectorComponent
+    GameSelectorComponent,
+    GaugePipe
   ],
   imports: [
     BrowserModule,

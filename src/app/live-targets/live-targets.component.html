@@ -6,7 +6,7 @@
     </div>
     <div class="target-summary-info">
       <h5 class="target-name">{{target.name}}</h5>
-      <progressbar class="target-hp" [value]="target.liveHp" [max]="target.maxHp">{{target.liveHp}}/{{target.maxHp}}</progressbar>
+      <progressbar class="gauge" [value]="target | gauge" [max]="100"></progressbar>
     </div>
   </div>
 </div>

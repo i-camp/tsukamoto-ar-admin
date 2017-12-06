@@ -35,8 +35,16 @@
   }
 
   .target-name,
-  .target-hp {
+  .gauge {
     display: block;
+  }
+
+  .progress-bar {
+    background-color: #FFF;
+    color: #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    @include text-truncate;
   }
 
 }
