@@ -5,13 +5,11 @@
   justify-content: space-around;
   padding: 20px;
   @include size(100%);
-  @include card-variant(#BBB, #777);
 
   .target {
     padding: 5px;
     margin: 10px;
     width: 200px;
-    @include card-variant(lighten(#BBB, 20%), #777);
     @include border-radius;
   }
 
