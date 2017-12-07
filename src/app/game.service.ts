@@ -105,7 +105,40 @@ export class GameService {
         },
         gameHistories: {},
         currentGame: {},
-        commits: {}
+        commits: {
+          game001: [
+            {target: 'tsukamotota01', plus: 10, minus: 10},
+            {target: 'tsukamotota01', plus: 10, minus: 10},
+            {target: 'tsukamotota01', plus: 10, minus: 10},
+            {target: 'tsukamotota01', plus: 10, minus: 10},
+            {target: 'tsukamotota01', plus: 10, minus: 10},
+            {target: 'tsukamotota01', plus: 10, minus: 10},
+            {target: 'tsukamotota01', plus: 10, minus: 10},
+            {target: 'tsukamotota01', plus: 10, minus: 10},
+            {target: 'tsukamotota01', plus: 10, minus: 10},
+            {target: 'tsukamotota01', plus: 10, minus: 10},
+            {target: 'tsukamotota02', plus: 10, minus: 10},
+            {target: 'tsukamotota02', plus: 10, minus: 10},
+            {target: 'tsukamotota02', plus: 10, minus: 10},
+            {target: 'tsukamotota02', plus: 10, minus: 10},
+            {target: 'tsukamotota02', plus: 10, minus: 10},
+            {target: 'tsukamotota02', plus: 10, minus: 10},
+            {target: 'tsukamotota02', plus: 10, minus: 10},
+            {target: 'tsukamotota02', plus: 10, minus: 10},
+            {target: 'tsukamotota02', plus: 10, minus: 10},
+            {target: 'tsukamotota02', plus: 10, minus: 10},
+            {target: 'tsukamotota03', plus: 10, minus: 10},
+            {target: 'tsukamotota03', plus: 10, minus: 10},
+            {target: 'tsukamotota03', plus: 10, minus: 10},
+            {target: 'tsukamotota03', plus: 10, minus: 10},
+            {target: 'tsukamotota03', plus: 10, minus: 10},
+            {target: 'tsukamotota03', plus: 10, minus: 10},
+            {target: 'tsukamotota03', plus: 10, minus: 10},
+            {target: 'tsukamotota03', plus: 10, minus: 10},
+            {target: 'tsukamotota03', plus: 10, minus: 10},
+            {target: 'tsukamotota03', plus: 10, minus: 10}
+          ]
+        }
       }
     );
   }

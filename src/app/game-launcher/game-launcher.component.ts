@@ -14,13 +14,15 @@ export class GameLauncherComponent implements OnInit {
 
   ngOnInit() {
     this.game = this.gameService.currentGame.valueChanges();
+    // TODO トリガーDebugコード
+    setTimeout(this.openGame.bind(this), 1000);
   }
 
-  openGame(){
+  openGame() {
     this.gameService.openCurrentGame();
   }
 
-  closeGame(){
+  closeGame() {
     this.gameService.closeCurrentGame();
   }
 
