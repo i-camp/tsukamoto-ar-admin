@@ -73,34 +73,34 @@ export class GameService {
           game001: {
             name: '-審判の日- 個人用核シェルター争奪戦 予選',
             during: '60000',
-            targets: [
-              {name: 'tsuamotota01', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              {name: 'tsuamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              {name: 'tsuamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-            ]
+            targets: {
+              tsukamotota01: {name: 'tsukamotota01', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota02: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota03: {name: 'tsukamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'}
+            }
           },
           game002: {
             name: '-審判の日- 個人用核シェルター争奪戦 前哨戦',
             during: '60000',
-            targets: [
-              {name: 'tsuamotota01', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              {name: 'tsuamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              {name: 'tsuamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              {name: 'tsuamotota04', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              {name: 'tsuamotota05', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              {name: 'tsuamotota06', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              {name: 'tsuamotota07', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'}
-            ]
+            targets: {
+              tsukamotota01: {name: 'tsukamotota01', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota02: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota03: {name: 'tsukamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota04: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota05: {name: 'tsukamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota06: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota07: {name: 'tsukamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'}
+            }
           },
           game003: {
             name: '-審判の日- 個人用核シェルター争奪戦',
             during: '60000',
-            targets: [
-              {name: 'tsuamotota01', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              {name: 'tsuamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              {name: 'tsuamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              {name: 'tsuamotota04', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-            ]
+            targets: {
+              tsukamotota01: {name: 'tsukamotota01', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota02: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota03: {name: 'tsukamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota04: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'}
+            }
           }
         },
         gameHistories: {},

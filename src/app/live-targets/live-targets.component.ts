@@ -16,7 +16,7 @@ export class LiveTargetsComponent implements OnInit {
   ngOnInit() {
     this.targets = this.gameService.currentGame
       .valueChanges()
-      .map((game: any) => game ? game.targets : null);
+      .map((game: any) => game ? Object.values(game.targets) : null);
   }
 
 }
