@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class GaugePipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    let plusPointPart = value.plusPoint / (value.plusPoint + value.minusPoint) * 100 || 0;
-    let minusPointPart = value.minusPoint / (value.plusPoint + value.minusPoint) * 100 || 0;
+    let plusPointPart = value.plus / (value.plus + value.minus) * 100 || 0;
+    let minusPointPart = value.minus / (value.plus + value.minus) * 100 || 0;
     if (plusPointPart === minusPointPart) {
       plusPointPart = 50;
       minusPointPart = 50;
