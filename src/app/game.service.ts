@@ -67,8 +67,7 @@ export class GameService {
   // Schema作成
   initSchema() {
     const refRoot = this.db.object('/');
-    refRoot.set(
-      {
+    const dummyData = {
         gameSettings: {
           game001: {
             name: '-審判の日- 個人用核シェルター争奪戦 予選',
@@ -106,41 +105,18 @@ export class GameService {
         gameHistories: {},
         currentGame: {},
         commits: {
-          game001: [
-            {target: 'tsukamotota01', plus: 10, minus: 10},
-            {target: 'tsukamotota01', plus: 10, minus: 10},
-            {target: 'tsukamotota01', plus: 10, minus: 10},
-            {target: 'tsukamotota01', plus: 10, minus: 10},
-            {target: 'tsukamotota01', plus: 10, minus: 10},
-            {target: 'tsukamotota01', plus: 10, minus: 10},
-            {target: 'tsukamotota01', plus: 10, minus: 10},
-            {target: 'tsukamotota01', plus: 10, minus: 10},
-            {target: 'tsukamotota01', plus: 10, minus: 10},
-            {target: 'tsukamotota01', plus: 10, minus: 10},
-            {target: 'tsukamotota02', plus: 10, minus: 10},
-            {target: 'tsukamotota02', plus: 10, minus: 10},
-            {target: 'tsukamotota02', plus: 10, minus: 10},
-            {target: 'tsukamotota02', plus: 10, minus: 10},
-            {target: 'tsukamotota02', plus: 10, minus: 10},
-            {target: 'tsukamotota02', plus: 10, minus: 10},
-            {target: 'tsukamotota02', plus: 10, minus: 10},
-            {target: 'tsukamotota02', plus: 10, minus: 10},
-            {target: 'tsukamotota02', plus: 10, minus: 10},
-            {target: 'tsukamotota02', plus: 10, minus: 10},
-            {target: 'tsukamotota03', plus: 10, minus: 10},
-            {target: 'tsukamotota03', plus: 10, minus: 10},
-            {target: 'tsukamotota03', plus: 10, minus: 10},
-            {target: 'tsukamotota03', plus: 10, minus: 10},
-            {target: 'tsukamotota03', plus: 10, minus: 10},
-            {target: 'tsukamotota03', plus: 10, minus: 10},
-            {target: 'tsukamotota03', plus: 10, minus: 10},
-            {target: 'tsukamotota03', plus: 10, minus: 10},
-            {target: 'tsukamotota03', plus: 10, minus: 10},
-            {target: 'tsukamotota03', plus: 10, minus: 10}
-          ]
+          game001: []
         }
-      }
-    );
+      };
+    // 負荷試験用
+    for (let i = 0; i < 10000; i++) {
+      dummyData.commits.game001 = dummyData.commits.game001.concat([
+        {target: 'tsukamotota01', plus: 10, minus: 10},
+        {target: 'tsukamotota02', plus: 10, minus: 10},
+        {target: 'tsukamotota03', plus: 10, minus: 10}
+      ]);
+    }
+    refRoot.set(dummyData);
   }
 
   get gameSettings(): AngularFireList<any> {
