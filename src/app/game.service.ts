@@ -70,37 +70,20 @@ export class GameService {
     const dummyData = {
         gameSettings: {
           game001: {
-            name: '-審判の日- 個人用核シェルター争奪戦 予選',
-            during: '60000',
-            targets: {
-              tsukamotota01: {name: 'tsukamotota01', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota02: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota03: {name: 'tsukamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'}
-            }
-          },
-          game002: {
-            name: '-審判の日- 個人用核シェルター争奪戦 前哨戦',
+            name: '悪に染まったT-800迎撃戦',
             during: '60000',
             targets: {
               tsukamotota01: {name: 'tsukamotota01', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
               tsukamotota02: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
               tsukamotota03: {name: 'tsukamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota04: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota05: {name: 'tsukamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota06: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota07: {name: 'tsukamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              tsukamotota04: {name: 'tsukamotota04', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota05: {name: 'tsukamotota05', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota06: {name: 'tsukamotota06', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota07: {name: 'tsukamotota07', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota08: {name: 'tsukamotota08', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              tsukamotota09: {name: 'tsukamotota09', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'}
             }
           },
-          game003: {
-            name: '-審判の日- 個人用核シェルター争奪戦',
-            during: '60000',
-            targets: {
-              tsukamotota01: {name: 'tsukamotota01', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota02: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota03: {name: 'tsukamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota04: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'}
-            }
-          }
         },
         gameHistories: {},
         currentGame: {},
@@ -109,11 +92,11 @@ export class GameService {
         }
       };
     // 負荷試験用
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 1000; i++) {
       dummyData.commits.game001 = dummyData.commits.game001.concat([
         {target: 'tsukamotota01', plus: 10, minus: 10},
-        {target: 'tsukamotota02', plus: 10, minus: 10},
-        {target: 'tsukamotota03', plus: 10, minus: 10}
+        {target: 'tsukamotota02', plus: 20, minus: 20},
+        {target: 'tsukamotota03', plus: 30, minus: 30}
       ]);
     }
     refRoot.set(dummyData);

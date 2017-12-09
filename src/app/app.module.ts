@@ -21,7 +21,7 @@ import { ScorePipe } from './score.pipe';
 const appRoutes: Routes = [
   {path: 'new-game', component: EditableTargetsComponent},
   {path: 'games/:id', component: LiveGameMonitorComponent},
-  {path: '**', redirectTo: '/games/game001'}
+  {path: '**', redirectTo: '/games/game002'}
 ];
 
 @NgModule({
