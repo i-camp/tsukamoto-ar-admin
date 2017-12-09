@@ -94,9 +94,9 @@ export class GameService {
     // 負荷試験用
     for (let i = 0; i < 1000; i++) {
       dummyData.commits.game001 = dummyData.commits.game001.concat([
-        {target: 'tsukamotota01', plus: 10, minus: 10},
-        {target: 'tsukamotota02', plus: 20, minus: 20},
-        {target: 'tsukamotota03', plus: 30, minus: 30}
+        {target: 'tsukamotota01', plus: 15, minus: 10},
+        {target: 'tsukamotota02', plus: 20, minus: 30},
+        {target: 'tsukamotota03', plus: 30, minus: 10}
       ]);
     }
     refRoot.set(dummyData);
