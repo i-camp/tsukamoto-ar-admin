@@ -6,13 +6,46 @@
   justify-content: space-around;
   padding: 20px;
   @include size(100%);
-
-  .target {
+.target {
     border: 1px solid #FFF;
     padding: 7px;
     margin: 10px;
     width: 200px;
+    position: relative;
     @include border-radius;
+    &::before {
+      position: absolute;
+      top: -0.5em;
+      left: calc(100% - 0.5em);
+      background-color: white;
+      @include size(1em);
+      @include border-radius(50%);
+      color: darkviolet;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &[data-order="1"] {
+      flex-basis: 30%;
+      &::before {
+        content: '1';
+        font-size: 3em;
+      }
+    }
+    &[data-order="2"] {
+      flex-basis: 30%;
+      &::before {
+        content: '2';
+        font-size: 2em;
+      }
+    }
+    &[data-order="3"] {
+      flex-basis: 30%;
+      &::before {
+        content: '3';
+        font-size: 2em;
+      }
+    }
   }
 
   .target-rating {
@@ -39,12 +72,16 @@
   .target-name,
   .gauge {
     display: block;
+    @include text-truncate;
   }
 
   .progress-bar {
     background-color: #FFF;
     color: #000;
-    border-left: 1px solid #000;
+  }
+
+  .gauge bar:nth-child(1){
+    background-color: red !important;
     border-right: 1px solid #000;
     @include text-truncate;
   }

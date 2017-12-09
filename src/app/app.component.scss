@@ -1,15 +1,11 @@
 .gird-container {
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 1fr 180px;
   grid-template-rows: 80px 1fr;
   grid-template-areas:
-    "launcher  launcher"
-    "selector  main    ";
+    ".... launcher"
+    "main main    ";
   height: 100%
-}
-
-.selector-container {
-  grid-area: selector;
 }
 
 .launcher-container {

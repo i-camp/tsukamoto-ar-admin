@@ -20,7 +20,7 @@ import { GaugePipe } from './gauge.pipe';
 const appRoutes: Routes = [
   {path: 'new-game', component: EditableTargetsComponent},
   {path: 'games/:id', component: LiveGameMonitorComponent},
-  {path: '**', redirectTo: '/games/game002'}
+  {path: '**', redirectTo: '/games/game001'}
 ];
 
 @NgModule({
