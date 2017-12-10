@@ -13,8 +13,8 @@ export class GaugePipe implements PipeTransform {
       minusPointPart = 50;
     }
     return [
-      {value: plusPointPart, type: 'info', label: `${plusPointPart}%`},
-      {value: minusPointPart, type: 'success', label: `${minusPointPart}%`}
+      {value: plusPointPart, label: `${plusPointPart}%`},
+      {value: minusPointPart, label: `${minusPointPart}%`}
     ];
   }
 

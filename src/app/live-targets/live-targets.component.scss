@@ -70,7 +70,7 @@
 
   .target-pic {
     margin: 5px;
-    @include size(100px);
+    @include size(180px);
     @include border-radius(50%);
   }
 
@@ -81,31 +81,48 @@
 
   .gauge {
     display: flex;
+    position: relative;
     @include text-truncate;
     &::before {
+      position: absolute;
+      top: 0.25rem;
       display: inline-block;
       @include text-truncate;
       content: '\200f';
       margin: auto 3px;
-      @include size(1rem);
+      @include size(1.5rem);
       background-image: url("/assets/bugfix.svg");
       background-size: cover;
     }
     &::after {
+      position: absolute;
+      top: 0.25rem;
+      left: calc(100% - 1.5rem - 10px);
       display: inline-block;
       @include text-truncate;
       content: '\200f';
       margin: auto 3px;
-      @include size(1rem);
+      @include size(1.5rem);
       background-image: url("/assets/faster.svg");
       background-size: cover;
     }
   }
 
   .gauge bar:nth-child(1){
-    background-color: red !important;
-    border-right: 1px solid #000;
+    border-right: 3px solid darkviolet;
     @include text-truncate;
   }
+
+  .progress-bar {
+    height: 2rem;
+    line-height:2rem;
+    background-color: #9FA;
+    color: #000;
+  }
+
+  bar:nth-child(1) .progress-bar{
+    background-color: lighten(#66F, 5%);
+  }
+
 
 }
