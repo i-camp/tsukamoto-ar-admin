@@ -16,7 +16,7 @@ export class GameService {
     this._gameSettings = db.list(`gameSettings`);
     this._specialTarget = db.object(`currentGame/targets/${GameService.specialTargetId}`);
     this.initGameEvent();
-    // NOTE 開発中のみ
+    // NOTE 開発中のみ(Productionで存在しても困ることは無い)
     this.initSchema();
   }
 
@@ -86,19 +86,19 @@ export class GameService {
 
   // Schema作成
   initSchema() {
-    const refRoot = this.db.object('/gameSettings/game001').set({
+    this.db.object('/gameSettings/game001').set({
       name: '悪に染まったT-800迎撃戦',
       during: '300000',
       targets: {
-        haram: {name: 'haram', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-        teradaj: {name: 'teradaj', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-        fujimakis: {name: 'fujimakis', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-        okashitay: {name: 'okashitay', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-        suzukik: {name: 'suzukik', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-        matsudas: {name: 'matsudas', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-        watanaber: {name: 'watanaber', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-        nakanoa: {name: 'nakanoa', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-        watanabes: {name: 'watanabes', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'}
+        fujimakis :{minus:0,name:'fujimakis',picUrl:'https://firebasestorage.googleapis.com/v0/b/e-party2017.appspot.com/o/fujimakis.jpg?alt=media&token=947fa431-bd20-420a-a1b5-f15a0befb8cd',plus:0},
+        haram :{minus:0,name:'haram',picUrl:'https://firebasestorage.googleapis.com/v0/b/e-party2017.appspot.com/o/haram.jpg?alt=media&token=a05fcf05-7ec4-403a-95a5-4de6a91fcd1e',plus:0},
+        matsudas :{minus:0,name:'matsudas',picUrl:'https://firebasestorage.googleapis.com/v0/b/e-party2017.appspot.com/o/matsudas.jpg?alt=media&token=3ee88df3-bb88-43d2-973a-8f797f5d7853',plus:0},
+        nakanoa :{minus:0,name:'nakanoa',picUrl:'https://firebasestorage.googleapis.com/v0/b/e-party2017.appspot.com/o/nakanoa.jpg?alt=media&token=2679a29e-f546-48e1-ba69-e64be073098a',plus:0},
+        okashitay :{minus:0,name:'okashitay',picUrl:'https://firebasestorage.googleapis.com/v0/b/e-party2017.appspot.com/o/okashity.jpg?alt=media&token=718bf294-47ff-4e18-ae99-08b54e68035f',plus:0},
+        suzukik :{minus:0,name:'suzukik',picUrl:'https://firebasestorage.googleapis.com/v0/b/e-party2017.appspot.com/o/suzukik.jpg?alt=media&token=ed83c1e1-f196-49ca-96f7-d21c81246362',plus:0},
+        teradaj :{minus:0,name:'teradaj',picUrl:'https://firebasestorage.googleapis.com/v0/b/e-party2017.appspot.com/o/teradaj.jpg?alt=media&token=620e919f-fb5b-408b-9075-6031878e5091',plus:0},
+        watanaber :{minus:0,name:'watanaber',picUrl:'https://firebasestorage.googleapis.com/v0/b/e-party2017.appspot.com/o/watanaber.jpg?alt=media&token=981e860c-a14c-45c4-a15b-a0b1a107684e',plus:0},
+        watanabes :{minus:0,name:'watanabes',picUrl:'https://firebasestorage.googleapis.com/v0/b/e-party2017.appspot.com/o/watanabes.jpg?alt=media&token=27ec172c-3981-405e-87df-cfa4559411cd',plus:0}
       }
     });
   }
