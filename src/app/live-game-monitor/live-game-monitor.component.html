@@ -1,3 +1,5 @@
 <div id="monitor-container">
+  <div *ngIf="helperEffectState" [@helperEvent] = "helperEffectState"
+       (@helperEvent.done)="helperEffectState = null" class="helper_effector"></div>
   <ta-live-targets></ta-live-targets>
 </div>

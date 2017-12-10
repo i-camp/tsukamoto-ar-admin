@@ -10,7 +10,8 @@
     border: 1px solid #FFF;
     padding: 7px;
     margin: 10px;
-    width: 200px;
+    box-sizing: border-box;
+    width: calc((100% / 3) - 20px);
     position: relative;
     @include border-radius;
     &::before {
@@ -18,7 +19,6 @@
       top: -0.5em;
       left: calc(100% - 0.5em);
       background-color: white;
-      @include size(1em);
       @include border-radius(50%);
       color: darkviolet;
       display: flex;
@@ -26,24 +26,28 @@
       justify-content: center;
     }
     &[data-order="1"] {
-      flex-basis: 30%;
+      width: calc(100% - 20px);
+      margin-bottom: 50px;
       &::before {
         content: '1';
-        font-size: 3em;
+        font-size: 3rem;
+        @include size(3rem);
       }
     }
     &[data-order="2"] {
-      flex-basis: 30%;
+      width: calc(calc(100% / 2) - 20px);
       &::before {
         content: '2';
-        font-size: 2em;
+        font-size: 2rem;
+        @include size(2rem);
       }
     }
     &[data-order="3"] {
-      flex-basis: 30%;
+      width: calc((100% / 2) - 20px);
       &::before {
         content: '3';
-        font-size: 2em;
+        font-size: 2rem;
+        @include size(2rem);
       }
     }
   }
@@ -65,7 +69,7 @@
 
   .target-pic {
     margin: 5px;
-    @include size(80px);
+    @include size(100px);
     @include border-radius(50%);
   }
 

@@ -1,15 +1,16 @@
-import {Injectable} from '@angular/core';
+import {Injectable, EventEmitter} from '@angular/core';
 import {AngularFireDatabase, AngularFireObject, AngularFireList, SnapshotAction} from 'angularfire2/database';
 import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/observable/zip';
+import {Observable} from "rxjs/Observable";
 
-@Injectable()
-export class GameService {
+@Injectable() export class GameService {
 
   private _currentGame: AngularFireObject<any>;
   private _gameSettings: AngularFireList<any>;
   private static specialTargetId = 'watanabes';
   private _specialTarget: AngularFireObject<any>;
+  private _helperEventEmitter = new EventEmitter<any>();
 
   constructor(private db: AngularFireDatabase) {
     this._currentGame = db.object(`currentGame`);
@@ -22,15 +23,33 @@ export class GameService {
 
   private initGameEvent() {
     this._specialTarget.valueChanges()
-      .filter((target: any) => target && target.score && target.score < 10)
-      .mergeMap((target: any) => this.db.list('currentGame/targets').snapshotChanges().take(1))
-      // ↑ 要テスト対象
-      .subscribe((targets: any[]) => {
-        const worstTarget = targets
-          .filter(target => target !== GameService.specialTargetId)
-          .sort((a, b) => a.order - b.order)[0];
-        this.db.list(`commits`).push({target: worstTarget.name, plus: 100000, minus: 100000});
-        this._specialTarget.update({plus: 0, minus: 0, score: 0});
+      .filter((target: any) => target && target.plus && target.minus && target.plus + target.minus > 400)
+      .filter((target: any) => target && target.score && target.score > 30000)
+      .subscribe((target: any) => {
+        Observable.zip(
+          this.db.object('currentGame/targets').valueChanges(),
+          this.db.object(`currentGame/targets/${GameService.specialTargetId}`).valueChanges(),
+          this.db.object(`currentGame`).valueChanges()
+        )
+        .take(1)
+        .subscribe((data: any) => {
+          const targets =  data[0];
+          const specialTarget =  data[1];
+          const currentGame =  data[2];
+
+          const worstTarget = Object.values(targets)
+            .filter(spt => spt.name !== GameService.specialTargetId)
+            .sort((a, b) => b.order - a.order)[0];
+
+          const commitsRef = this.db.list(`commits/${currentGame.id}`);
+          commitsRef.push({target: worstTarget.name, plus: 100000, minus: 100000})
+          commitsRef.push({
+            target: specialTarget.name,
+            plus: specialTarget.plus * -1,
+            minus: specialTarget.minus * -1
+          });
+          this._helperEventEmitter.emit(worstTarget);
+        });
       });
   };
 
@@ -109,6 +128,10 @@ export class GameService {
 
   get currentGame(): AngularFireObject<any> {
     return this._currentGame;
+  }
+
+  get helperEventEmitter(): EventEmitter<any> {
+    return this._helperEventEmitter;
   }
 
 }
