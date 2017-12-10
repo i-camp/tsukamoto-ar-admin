@@ -4,9 +4,10 @@
   align-content: space-around;
   align-items: center;
   justify-content: space-around;
-  padding: 20px;
+  padding: 5px 20px;
   @include size(100%);
-.target {
+
+  .target {
     border: 1px solid #FFF;
     padding: 7px;
     margin: 10px;
@@ -73,15 +74,32 @@
     @include border-radius(50%);
   }
 
-  .target-name,
-  .gauge {
+  .target-name {
     display: block;
     @include text-truncate;
   }
 
-  .progress-bar {
-    background-color: #FFF;
-    color: #000;
+  .gauge {
+    display: flex;
+    @include text-truncate;
+    &::before {
+      display: inline-block;
+      @include text-truncate;
+      content: '\200f';
+      margin: auto 3px;
+      @include size(1rem);
+      background-image: url("/assets/bugfix.svg");
+      background-size: cover;
+    }
+    &::after {
+      display: inline-block;
+      @include text-truncate;
+      content: '\200f';
+      margin: auto 3px;
+      @include size(1rem);
+      background-image: url("/assets/faster.svg");
+      background-size: cover;
+    }
   }
 
   .gauge bar:nth-child(1){

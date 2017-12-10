@@ -7,11 +7,18 @@
   align-items: center;
 
   .start,
-  .reset {
+  .stop {
     @include size(40px);
     @include button-variant(#222, #BBB, #000);
-    @include border-radius(50%);
     margin: 10px;
+  }
+
+  .start {
+    clip-path: polygon(100% 50%, 0 0, 0 100%);
+  }
+
+  .stop {
+    clip-path: inset(5% 20% 15% 10%);
   }
 
   .game-titile {
