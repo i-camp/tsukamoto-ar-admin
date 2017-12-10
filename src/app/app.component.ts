@@ -14,8 +14,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // NOTE 開発中のみ
-    this.gameService.initSchema();
   }
 
 }
