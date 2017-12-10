@@ -1,15 +1,31 @@
 #monitor-container {
   @include size(100%);
 
-  .helper_effector {
+  .helper_cutin_effector {
     @include size(1328px, 100vh);
     position: absolute;
     top: 0;
     clip-path: polygon(66% 0, 97% 0, 73% 100%, 43% 100%);
     background-position-x: -30px;
     background: url("/assets/shige_san.jpg") round;
+    transform: translateX(200vw);
     background-size: auto 100%;
     z-index: 100;
+  }
+
+  .helper_caption_effector {
+    @include size(100vw, auto);
+    display: inline-block;
+    position: absolute;
+    padding: 0 20px;
+    border-top: 2px solid darkviolet;
+    border-buttom: 2px solid darkviolet;
+    font-size: 4.375vw;
+    top: 65vh;
+    background-color: #FFF;
+    transform: scale(0);
+    color: #000;
+    z-index: 101;
   }
 }
 
