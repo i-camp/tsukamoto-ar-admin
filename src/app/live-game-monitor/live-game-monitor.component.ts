@@ -55,6 +55,8 @@ export class LiveGameMonitorComponent implements OnInit {
       .subscribe(worstTarget => {
         this.helperEffectState = 'in';
         this.helpedTarget = worstTarget;
+        window.scrollTo(0, 0);
+        new Audio('/assets/nc135367.mp3').play();
       });
   }
 
