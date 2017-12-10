@@ -1,19 +1,38 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase, AngularFireObject, AngularFireList, SnapshotAction} from 'angularfire2/database';
 import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/mergeMap';
 
 @Injectable()
 export class GameService {
 
   private _currentGame: AngularFireObject<any>;
   private _gameSettings: AngularFireList<any>;
+  private static specialTargetId = 'watanabes';
+  private _specialTarget: AngularFireObject<any>;
 
   constructor(private db: AngularFireDatabase) {
     this._currentGame = db.object(`currentGame`);
     this._gameSettings = db.list(`gameSettings`);
+    this._specialTarget = db.object(`currentGame/targets/${GameService.specialTargetId}`);
+    this.initGameEvent();
   }
 
-  static createGameFromSetting(setting: SnapshotAction) {
+  private initGameEvent() {
+    this._specialTarget.valueChanges()
+      .filter((target: any) => target && target.score && target.score < 1000)
+      .mergeMap((target: any) => this.db.list('currentGame/targets').snapshotChanges().take(1))
+      // ↑ 要テスト対象
+      .subscribe((targets: any[]) => {
+        const worstTarget = targets
+          .filter(target => target !== GameService.specialTargetId)
+          .sort((a, b) => a.order - b.order)[0];
+        this.db.list(`commits`).push({target: worstTarget.name, plus: 100000, minus: 100000});
+        this._specialTarget.update({plus: 0, minus: 0, score: 0});
+      });
+  };
+
+  private static createGameFromSetting(setting: SnapshotAction) {
     return ({id: setting.payload.key, ...setting.payload.val()});
   }
 
@@ -71,17 +90,17 @@ export class GameService {
         gameSettings: {
           game001: {
             name: '悪に染まったT-800迎撃戦',
-            during: '60000',
+            during: '300000',
             targets: {
-              tsukamotota01: {name: 'tsukamotota01', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota02: {name: 'tsukamotota02', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota03: {name: 'tsukamotota03', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota04: {name: 'tsukamotota04', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota05: {name: 'tsukamotota05', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota06: {name: 'tsukamotota06', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota07: {name: 'tsukamotota07', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota08: {name: 'tsukamotota08', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
-              tsukamotota09: {name: 'tsukamotota09', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'}
+              haram: {name: 'haram', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              teradaj: {name: 'teradaj', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              fujimakis: {name: 'fujimakis', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              okashitay: {name: 'okashitay', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              suzukik: {name: 'suzukik', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              matsudas: {name: 'matsudas', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              watanaber: {name: 'watanaber', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              nakanoa: {name: 'nakanoa', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'},
+              watanabes: {name: 'watanabes', plus: 0, minus: 0, picUrl: 'http://placehold.jp/80x80.png'}
             }
           },
         },
@@ -94,9 +113,14 @@ export class GameService {
     // 負荷試験用
     for (let i = 0; i < 1000; i++) {
       dummyData.commits.game001 = dummyData.commits.game001.concat([
-        {target: 'tsukamotota01', plus: 15, minus: 10},
-        {target: 'tsukamotota02', plus: 20, minus: 30},
-        {target: 'tsukamotota03', plus: 30, minus: 10}
+        {target: 'haram', plus: 15, minus: 10},
+        {target: 'teradaj', plus: 20, minus: 30},
+        {target: 'fujimakis', plus: 30, minus: 10},
+        {target: 'okashitay', plus: 15, minus: 10},
+        {target: 'suzukik', plus: 20, minus: 30},
+        {target: 'matsudas', plus: 30, minus: 10},
+        {target: 'nakanoa', plus: 15, minus: 10},
+        {target: 'watanaber', plus: 20, minus: 30}
       ]);
     }
     refRoot.set(dummyData);
