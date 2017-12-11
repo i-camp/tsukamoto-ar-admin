@@ -106,7 +106,7 @@ import {Observable} from "rxjs/Observable";
   // Schema作成
   initSchema() {
     this.db.object('/gameSettings/game001').set({
-      name: '悪に染まったT-800迎撃戦',
+      name: '悪に染まったT-2020迎撃戦',
       during: '300000',
       targets: {
         fujimakis :{minus:0,name:'fujimakis',picUrl:'https://firebasestorage.googleapis.com/v0/b/e-party2017.appspot.com/o/fujimakis.jpg?alt=media&token=947fa431-bd20-420a-a1b5-f15a0befb8cd',plus:0},
