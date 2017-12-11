@@ -9,14 +9,14 @@ import {trigger, state, style, transition, animate, keyframes} from '@angular/an
   animations: [
     trigger('helperCutin', [
       state('in', style({
-        transform: 'translateX(-200vw)'
+        transform: 'translateX(100vw)'
       })),
       transition('void => in', [
         animate(10000, keyframes([
           style({transform: 'translateX(100vw)', offset: 0}),
-          style({transform: 'translateX(calc(100vw - 1150px))', offset: 0.05}),
-          style({transform: 'translateX(calc(100vw - 1250px))', offset: 0.95}),
-          style({transform: 'translateX(-200vw)', offset: 1})
+          style({transform: 'translateX(10vw)', offset: 0.05}),
+          style({transform: 'translateX(0vw)', offset: 0.97}),
+          style({transform: 'translateX(-100vw)', offset: 1})
         ]))
       ])
     ]),
@@ -28,7 +28,7 @@ import {trigger, state, style, transition, animate, keyframes} from '@angular/an
         animate(10000, keyframes([
           style({transform: 'scale(0)', offset: 0}),
           style({transform: 'scale(1)', offset: 0.05}),
-          style({transform: 'scale(1)', offset: 0.95}),
+          style({transform: 'scale(1)', offset: 0.97}),
           style({transform: 'scale(0)', offset: 1})
         ]))
       ])
