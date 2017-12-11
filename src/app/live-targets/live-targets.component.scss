@@ -16,6 +16,12 @@
     @media screen and (min-width: 1500px) {
       width: calc((100% / 5) - 20px);
     }
+    @media screen and (max-width: 800px) {
+      width: calc((100% / 2) - 20px);
+    }
+    @media screen and (max-width: 600px) {
+      width: calc(100% - 20px);
+    }
     position: relative;
     @include border-radius;
     &::before {
@@ -34,6 +40,12 @@
       @media screen and (min-width: 1500px) {
         width: calc((100% / 3) - 20px);
       }
+      @media screen and (max-width: 800px) {
+        width: calc((100% / 2) - 20px);
+      }
+      @media screen and (max-width: 600px) {
+        width: calc(100% - 20px);
+      }
       &::before {
         content: '1';
         font-size: 3rem;
@@ -45,6 +57,12 @@
       @media screen and (min-width: 1500px) {
         width: calc((100% / 3) - 20px);
       }
+      @media screen and (max-width: 800px) {
+        width: calc((100% / 2) - 20px);
+      }
+      @media screen and (max-width: 600px) {
+        width: calc(100% - 20px);
+      }
       &::before {
         content: '2';
         font-size: 2rem;
@@ -55,6 +73,12 @@
       width: calc((100% / 2) - 20px);
       @media screen and (min-width: 1500px) {
         width: calc((100% / 3) - 20px);
+      }
+      @media screen and (max-width: 800px) {
+        width: calc((100% / 2) - 20px);
+      }
+      @media screen and (max-width: 600px) {
+        width: calc(100% - 20px);
       }
       &::before {
         content: '3';
