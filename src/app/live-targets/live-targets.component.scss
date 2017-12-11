@@ -12,16 +12,7 @@
     padding: 7px;
     margin: 10px;
     box-sizing: border-box;
-    width: calc((100% / 3) - 20px);
-    @media screen and (min-width: 1500px) {
-      width: calc((100% / 5) - 20px);
-    }
-    @media screen and (max-width: 800px) {
-      width: calc((100% / 2) - 20px);
-    }
-    @media screen and (max-width: 600px) {
-      width: calc(100% - 20px);
-    }
+    width: calc((100% / 4) - 20px);
     position: relative;
     @include border-radius;
     &::before {
@@ -36,16 +27,6 @@
       justify-content: center;
     }
     &[data-order="1"] {
-      width: calc(100% - 20px);
-      @media screen and (min-width: 1500px) {
-        width: calc((100% / 3) - 20px);
-      }
-      @media screen and (max-width: 800px) {
-        width: calc((100% / 2) - 20px);
-      }
-      @media screen and (max-width: 600px) {
-        width: calc(100% - 20px);
-      }
       &::before {
         content: '1';
         font-size: 3rem;
@@ -53,16 +34,6 @@
       }
     }
     &[data-order="2"] {
-      width: calc(calc(100% / 2) - 20px);
-      @media screen and (min-width: 1500px) {
-        width: calc((100% / 3) - 20px);
-      }
-      @media screen and (max-width: 800px) {
-        width: calc((100% / 2) - 20px);
-      }
-      @media screen and (max-width: 600px) {
-        width: calc(100% - 20px);
-      }
       &::before {
         content: '2';
         font-size: 2rem;
@@ -70,16 +41,6 @@
       }
     }
     &[data-order="3"] {
-      width: calc((100% / 2) - 20px);
-      @media screen and (min-width: 1500px) {
-        width: calc((100% / 3) - 20px);
-      }
-      @media screen and (max-width: 800px) {
-        width: calc((100% / 2) - 20px);
-      }
-      @media screen and (max-width: 600px) {
-        width: calc(100% - 20px);
-      }
       &::before {
         content: '3';
         font-size: 2rem;
@@ -105,7 +66,7 @@
 
   .target-pic {
     margin: 5px;
-    @include size(180px);
+    @include size(80px);
     @include border-radius(50%);
   }
 
