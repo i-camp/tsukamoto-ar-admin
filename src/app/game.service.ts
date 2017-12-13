@@ -42,7 +42,7 @@ import {Observable} from "rxjs/Observable";
             .sort((a, b) => b.order - a.order)[0];
 
           const commitsRef = this.db.list(`commits/${currentGame.id}`);
-          commitsRef.push({target: worstTarget.name, plus: 100000, minus: 100000})
+          commitsRef.push({target: worstTarget.name, plus: 500, minus: 500})
           commitsRef.push({
             target: specialTarget.name,
             plus: specialTarget.plus * -1,
